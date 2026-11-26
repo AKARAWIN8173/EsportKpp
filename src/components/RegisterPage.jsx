@@ -136,7 +136,7 @@ function TextField({ name, label, error, hint, ...inputProps }) {
   )
 }
 
-function ImageField({ name, label, recommendedSize, error, required = false }) {
+function ImageField({ name, label, recommendedSize, guidance, error, required = false }) {
   return (
     <div className={labelClass}>
       <label htmlFor={name}>{label}{required && <RequiredMark />}</label>
@@ -158,7 +158,7 @@ function ImageField({ name, label, recommendedSize, error, required = false }) {
         }}
       />
       <span id={name + '-size-hint'} className="text-sm font-normal text-[var(--muted)]">
-        <strong>ขนาดแนะนำ:</strong> {recommendedSize} · รองรับ PNG, JPG, WebP
+        <strong>ขนาดแนะนำ:</strong> {recommendedSize}{guidance && ' · ' + guidance} · รองรับ PNG, JPG, WebP
       </span>
       <FieldError name={name} error={error} />
     </div>
@@ -208,7 +208,7 @@ function PlayerRow({ playerId, label, errors, collapsed, onToggle, onRemove, add
           <TextField name={'player-name-' + playerId} label="ชื่อผู้เล่น" hint="กรอกชื่อ-สกุล" error={errors['player-name-' + playerId]} />
           <TextField name={'player-name-en-' + playerId} label="ชื่อผู้เล่นภาษาอังกฤษ" hint="ตัวอย่าง: Somchai Jaidee" spellCheck={false} error={errors['player-name-en-' + playerId]} />
           <TextField name={'game-name-' + playerId} label="ชื่อในเกม" error={errors['game-name-' + playerId]} />
-          <ImageField name={'player-photo-' + playerId} label="ภาพผู้เล่น" recommendedSize="1000 x 1000 px" error={errors['player-photo-' + playerId]} />
+          <ImageField name={'player-photo-' + playerId} label="ภาพผู้เล่น" recommendedSize="1000 x 1000 px" guidance="รูปถ่ายครึ่งตัวบน" error={errors['player-photo-' + playerId]} />
         </div>
       </div>
       {(summary || collapsed) && (
