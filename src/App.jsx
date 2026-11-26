@@ -7,16 +7,20 @@ import TournamentSchedule from './components/TournamentSchedule.jsx'
 import Faq from './components/Faq.jsx'
 import SiteFooter from './components/SiteFooter.jsx'
 import ContactPage from './components/ContactPage.jsx'
+import RegisterPage from './components/RegisterPage.jsx'
+
+const pages = { contact: ContactPage, register_team: RegisterPage }
 
 export default function App() {
-  const isContactPage = new URLSearchParams(window.location.search).get('page') === 'contact'
-  const homePath = isContactPage ? import.meta.env.BASE_URL : ''
+  const page = new URLSearchParams(window.location.search).get('page')
+  const Page = Object.hasOwn(pages, page) ? pages[page] : null
+  const homePath = Page ? import.meta.env.BASE_URL : ''
 
   return (
     <>
-      <SiteHeader homePath={homePath} isContactPage={isContactPage} />
-      {isContactPage ? (
-        <ContactPage />
+      <SiteHeader homePath={homePath} isContactPage={page === 'contact'} />
+      {Page ? (
+        <Page />
       ) : (
         <main id="home">
           <Hero />
