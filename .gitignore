@@ -1,2 +1,13 @@
-node_modules/
-dist/
+.env
+.env.*
+!.env.example
+/vendor/
+/node_modules/
+/dist/
+/public/build/
+/public/storage
+/output/
+/storage/*.key
+/storage/logs/*.log
+/.phpunit.cache/
+/.phpunit.result.cache
